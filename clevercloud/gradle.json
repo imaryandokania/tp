@@ -1,0 +1,7 @@
+{
+  "deploy": {
+    "goal": "./gradlew run"
+  }
+}
+
+
