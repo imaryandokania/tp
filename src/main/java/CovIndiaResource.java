@@ -34,7 +34,7 @@ public class CovIndiaResource extends TelegramLongPollingBot {
         SendMessage message=new SendMessage();
         if(commands.equals("/start"))
         {
-            message.setText("Welcome! "+update.getMessage().getFrom().getFirstName()+" We are here to help people by providing details about Beds , Oxygen , Remdesivir etc");
+            message.setText("Welcome! hey"+update.getMessage().getFrom().getFirstName()+" We are here to help people by providing details about Beds , Oxygen , Remdesivir etc");
         }
         if(commands.equals("/delhibeds"))
         {
