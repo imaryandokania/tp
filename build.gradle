@@ -2,8 +2,8 @@ plugins {
     id 'java'
     id 'application'
 }
-sourceCompatibility = JavaVersion.VERSION_1_8
-targetCompatibility = JavaVersion.VERSION_1_8
+sourceCompatibility = JavaVersion.VERSION_11
+targetCompatibility = JavaVersion.VERSION_11
 group 'org.example'
 version '1.0-SNAPSHOT'
 task stage(dependsOn: ['build', 'clean'])
@@ -15,6 +15,11 @@ repositories {
 dependencies {
     implementation 'com.android.volley:volley:1.2.0'
     implementation 'org.telegram:telegrambots:5.2.0'
+    implementation(platform("com.squareup.okhttp3:okhttp-bom:4.9.0"))
+
+    // define any required OkHttp artifacts without version
+    implementation("com.squareup.okhttp3:okhttp")
+    implementation("com.squareup.okhttp3:logging-interceptor")
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
     implementation "org.slf4j:slf4j-simple:1.6.4"

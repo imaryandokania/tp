@@ -1,14 +1,21 @@
 
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
-
+import java.net.http.HttpResponse;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.URI;
-
+import java.net.URL;
+import java.net.URLConnection;
+import java.nio.charset.StandardCharsets;
 
 
 public class CovIndiaResource extends TelegramLongPollingBot {
@@ -37,6 +44,25 @@ public class CovIndiaResource extends TelegramLongPollingBot {
         if(commands.equals("/delhibeds"))
         {
             //  System.out.println();
+//            String inputLine;
+//            try {
+//                URL yahoo = new URL("https://covidresourceindia.herokuapp.com/posts");
+//                URLConnection yc = yahoo.openConnection();
+//                try (BufferedReader in = new BufferedReader(
+//                        new InputStreamReader(
+//                                yc.getInputStream()))) {
+//
+//                    while ((inputLine = in.readLine()) != null)
+//                        System.out.println(inputLine);
+//                    System.out.println("jbhbjkbjbjkbjk\n");
+//                    in.close();
+//                }
+//            }
+//            catch (Exception e)
+//            {
+//
+//            }
+
 //            System.out.println("/delhibeds  --->"+update.getMessage().getFrom().getFirstName());
 //            HttpClient client = HttpClient.newHttpClient();
 //            HttpRequest request = HttpRequest.newBuilder()
@@ -53,7 +79,7 @@ public class CovIndiaResource extends TelegramLongPollingBot {
 //            }
 //            //   System.out.println(response.body());
 //
-//            JSONArray mJsonArray = new JSONArray(response.body().toString());
+//            JSONArray mJsonArray = new JSONArray(inputLine);
 //            JSONObject mJsonObject = mJsonArray.getJSONObject(0);
 //            JSONArray mJsonArrayProperty1 = mJsonObject.getJSONArray("beds");
 //            String s="";
