@@ -16,6 +16,10 @@ import java.net.URI;
 import java.net.URL;
 import java.net.URLConnection;
 import java.nio.charset.StandardCharsets;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+
 
 
 public class CovIndiaResource extends TelegramLongPollingBot {
@@ -43,96 +47,77 @@ public class CovIndiaResource extends TelegramLongPollingBot {
         }
         if(commands.equals("/delhibeds"))
         {
-            //  System.out.println();
-//            String inputLine;
-//            try {
-//                URL yahoo = new URL("https://covidresourceindia.herokuapp.com/posts");
-//                URLConnection yc = yahoo.openConnection();
-//                try (BufferedReader in = new BufferedReader(
-//                        new InputStreamReader(
-//                                yc.getInputStream()))) {
-//
-//                    while ((inputLine = in.readLine()) != null)
-//                        System.out.println(inputLine);
-//                    System.out.println("jbhbjkbjbjkbjk\n");
-//                    in.close();
-//                }
-//            }
-//            catch (Exception e)
-//            {
-//
-//            }
 
-//            System.out.println("/delhibeds  --->"+update.getMessage().getFrom().getFirstName());
-//            HttpClient client = HttpClient.newHttpClient();
-//            HttpRequest request = HttpRequest.newBuilder()
-//                    .uri(URI.create("https://covidresourceindia.herokuapp.com/posts"))
-//                    .build();
-//
-//            HttpResponse<String> response = null;
-//            try {
-//                response = client.send(request, HttpResponse.BodyHandlers.ofString());
-//            } catch (IOException ioException) {
-//                ioException.printStackTrace();
-//            } catch (InterruptedException interruptedException) {
-//                interruptedException.printStackTrace();
-//            }
-//            //   System.out.println(response.body());
-//
-//            JSONArray mJsonArray = new JSONArray(inputLine);
-//            JSONObject mJsonObject = mJsonArray.getJSONObject(0);
-//            JSONArray mJsonArrayProperty1 = mJsonObject.getJSONArray("beds");
-//            String s="";
-//            s=s+"-----Delhi Bed Status-----"+"\n"+"\n";
-//            for(int i=0;i<mJsonArrayProperty1.length();i++)
-//            {
-//                JSONObject mJsonObjectProperty = mJsonArrayProperty1.getJSONObject(i);
-//                String location = mJsonObjectProperty.getString("Location");
-//                String Description = mJsonObjectProperty.getString("Description");
-//                String Locationcontact = mJsonObjectProperty.getString("Location-contact");
-//                String Verifiedat = mJsonObjectProperty.getString("Verified at");
-//                String Tocontact = mJsonObjectProperty.getString("Tocontact");
-//                s=s+"Location: "+location+"\n"+"Description: "+Description+"\n"+"Location-Contact: "+Locationcontact+"\n"+"Verified at: "+Verifiedat+"\n"+"To-contact: "+Tocontact+"\n";
-//                s=s+"\n";
-//            }
-//            message.setText(s);
-            message.setText("Ruk Jao Sir!"+update.getMessage().getFrom().getFirstName());
+            System.out.println("/delhibeds  --->"+update.getMessage().getFrom().getFirstName());
+            HttpClient client = HttpClient.newHttpClient();
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(URI.create("https://covidresourceindia.herokuapp.com/posts"))
+                    .build();
+
+            HttpResponse<String> response = null;
+            try {
+                response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            } catch (InterruptedException interruptedException) {
+                interruptedException.printStackTrace();
+            }
+            //   System.out.println(response.body());
+
+            JSONArray mJsonArray = new JSONArray(response.body().toString());
+            JSONObject mJsonObject = mJsonArray.getJSONObject(0);
+            JSONArray mJsonArrayProperty1 = mJsonObject.getJSONArray("beds");
+            String s="";
+            s=s+"-----Delhi Bed Status-----"+"\n"+"\n";
+            for(int i=0;i<mJsonArrayProperty1.length();i++)
+            {
+                JSONObject mJsonObjectProperty = mJsonArrayProperty1.getJSONObject(i);
+                String location = mJsonObjectProperty.getString("Location");
+                String Description = mJsonObjectProperty.getString("Description");
+                String Locationcontact = mJsonObjectProperty.getString("Location-contact");
+                String Verifiedat = mJsonObjectProperty.getString("Verified at");
+                String Tocontact = mJsonObjectProperty.getString("Tocontact");
+                s=s+"Location: "+location+"\n"+"Description: "+Description+"\n"+"Location-Contact: "+Locationcontact+"\n"+"Verified at: "+Verifiedat+"\n"+"To-contact: "+Tocontact+"\n";
+                s=s+"\n";
+            }
+            message.setText(s);
+          //  message.setText("Ruk Jao Sir!"+update.getMessage().getFrom().getFirstName());
         }
 
         if(commands.equals("/oxygendelhi"))
         {
             //  System.out.println();
-//            System.out.println("/oxygendelhi -->"+update.getMessage().getFrom().getFirstName());
-//            HttpClient client = HttpClient.newHttpClient();
-//            HttpRequest request = HttpRequest.newBuilder()
-//                    .uri(URI.create("https://covidresourceindia.herokuapp.com/posts"))
-//                    .build();
-//
-//            HttpResponse<String> response = null;
-//            try {
-//                response = client.send(request, HttpResponse.BodyHandlers.ofString());
-//            } catch (IOException ioException) {
-//                ioException.printStackTrace();
-//            } catch (InterruptedException interruptedException) {
-//                interruptedException.printStackTrace();
-//            }
-//
-//            JSONArray mJsonArray = new JSONArray(response.body().toString());
-//            JSONObject mJsonObject = mJsonArray.getJSONObject(0);
-//            JSONArray mJsonArrayProperty1 = mJsonObject.getJSONArray("Oxygeninfo");
-//            String s="";
-//            s=s+"----Oxgen Availability / Refill Status----"+"\n"+"\n";
-//            for(int i=0;i<mJsonArrayProperty1.length();i++)
-//            {
-//                JSONObject mJsonObjectProperty = mJsonArrayProperty1.getJSONObject(i);
-//                String location = mJsonObjectProperty.getString("Location");
-//                String Serviceavailable = mJsonObjectProperty.getString("Service available");
-//                String Contact = mJsonObjectProperty.getString("Contact");
-//                String Verifiedat = mJsonObjectProperty.getString("Verified at");
-//                s=s+"Location: "+location+"\n"+"Service Available: "+Serviceavailable+"\n"+"Contact: "+Contact+"\n"+"Verified at: "+Verifiedat+"\n";
-//                s=s+"\n";
-//            }
-//            message.setText(s);
+            System.out.println("/oxygendelhi -->"+update.getMessage().getFrom().getFirstName());
+            HttpClient client = HttpClient.newHttpClient();
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(URI.create("https://covidresourceindia.herokuapp.com/posts"))
+                    .build();
+
+            HttpResponse<String> response = null;
+            try {
+                response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            } catch (InterruptedException interruptedException) {
+                interruptedException.printStackTrace();
+            }
+
+            JSONArray mJsonArray = new JSONArray(response.body().toString());
+            JSONObject mJsonObject = mJsonArray.getJSONObject(0);
+            JSONArray mJsonArrayProperty1 = mJsonObject.getJSONArray("Oxygeninfo");
+            String s="";
+            s=s+"----Oxgen Availability / Refill Status----"+"\n"+"\n";
+            for(int i=0;i<mJsonArrayProperty1.length();i++)
+            {
+                JSONObject mJsonObjectProperty = mJsonArrayProperty1.getJSONObject(i);
+                String location = mJsonObjectProperty.getString("Location");
+                String Serviceavailable = mJsonObjectProperty.getString("Service available");
+                String Contact = mJsonObjectProperty.getString("Contact");
+                String Verifiedat = mJsonObjectProperty.getString("Verified at");
+                s=s+"Location: "+location+"\n"+"Service Available: "+Serviceavailable+"\n"+"Contact: "+Contact+"\n"+"Verified at: "+Verifiedat+"\n";
+                s=s+"\n";
+            }
+            message.setText(s);
       }
 
         message.setChatId(String.valueOf(update.getMessage().getChatId()));
