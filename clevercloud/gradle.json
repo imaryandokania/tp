@@ -1,6 +1,6 @@
 {
   "deploy": {
-    "goal": " cd && cd /Users/aryandokania/IdeaProjects/cov  &&  ./gradlew run"
+    "goal": " ./gradlew run"
   }
 }
 
