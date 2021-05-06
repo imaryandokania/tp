@@ -151,7 +151,7 @@ public class CovIndiaResource extends TelegramLongPollingBot {
 
           //  message.setText("Ruk Jao Sir!"+update.getMessage().getFrom().getFirstName());
         }
-        if(commands.equals("/govtdelhibeds"))
+        if(commands.equals("/govtdelhibed"))
         {
             String d = "";
             try {
@@ -184,13 +184,13 @@ public class CovIndiaResource extends TelegramLongPollingBot {
                     }
 
                 }
-                message.setText(d);
-          //      System.out.println(d);
 
 
             }catch (Exception e) {
-                System.out.println(e);
+
             }
+            System.out.println(d);
+            message.setText(d);
         }
 
         if(commands.equals("/oxygendelhi"))
