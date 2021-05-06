@@ -179,8 +179,16 @@ public class CovIndiaResource extends TelegramLongPollingBot {
                         System.out.println("Total: "+splitStr[0]);
                         System.out.println("Vacant: "+splitStr[1]);
                         System.out.println();
-                        d=d+"\n"+"Hospital:"+tableData3.text()+"\n"+"Location: "+parts[0]+"\n"+"Last"+parts[1]+"\n"+"Total: "+splitStr[0]+"\n"+"Vacant: "+splitStr[1]+"\n";
-
+                        if(!splitStr[1].equals("0")) {
+                            d = "\n" + "Hospital:" + tableData3.text() + "\n" + "Location: " + parts[0] + "\n" + "Last" + parts[1] + "\n" + "Total: " + splitStr[0] + "\n" + "Vacant: " + splitStr[1] + "\n";
+                        }
+                        message.setText(d);
+                        message.setChatId(String.valueOf(update.getMessage().getChatId()));
+                        try {
+                            execute(message);
+                        } catch (TelegramApiException e) {
+                            e.printStackTrace();
+                        }
                     }
 
                 }
