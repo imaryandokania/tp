@@ -11,10 +11,8 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import java.net.http.HttpResponse;
-
 import java.io.IOException;
 import java.net.URI;
-
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 
@@ -92,7 +90,6 @@ public class CovIndiaResource extends TelegramLongPollingBot {
             } catch (InterruptedException interruptedException) {
                 interruptedException.printStackTrace();
             }
-            //   System.out.println(response.body());
 
             JSONArray mJsonArray = new JSONArray(response.body().toString());
             JSONObject mJsonObject = mJsonArray.getJSONObject(0);
@@ -167,7 +164,6 @@ public class CovIndiaResource extends TelegramLongPollingBot {
                         Elements tableData3 = tableRow.select("h5");
                         String s1 = tableData1.text();
                         String[] parts = s1.split("Last");
-                        //  System.out.println(tableData1.text());
                         String s = tableData2.text();
                         String[] splitStr = s.split("\\s+");
 
@@ -188,7 +184,6 @@ public class CovIndiaResource extends TelegramLongPollingBot {
                     }
 
                 }
-
 
             }
             catch (Exception e) {
