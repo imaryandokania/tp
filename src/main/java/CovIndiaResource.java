@@ -151,37 +151,31 @@ public class CovIndiaResource extends TelegramLongPollingBot {
 
           //  message.setText("Ruk Jao Sir!"+update.getMessage().getFrom().getFirstName());
         }
-        if(commands.equals("/govtdelhibed"))
-        {
+        if(commands.equals("/govtdelhibed")) {
             String d = "";
             try {
                 String uri = "https://delhifightscorona.in/data/covid-icu-beds/";
-                Document doc= Jsoup.connect(uri).get();
+                Document doc = Jsoup.connect(uri).get();
                 Elements tables = doc.select("#beds");
-                for(Element table : tables)
-                {
+                for (Element table : tables) {
                     Elements tableRows = table.select("#beds > tbody > tr");
-                    for(Element tableRow : tableRows)
-                    {
+                    for (Element tableRow : tableRows) {
 
                         Elements tableData = tableRow.select("td");
                         Elements tableData2 = tableRow.select("td.text-right");
                         Elements tableData1 = tableData.select("address");
                         Elements tableData3 = tableRow.select("h5");
-                        String s1=tableData1.text();
+                        String s1 = tableData1.text();
                         String[] parts = s1.split("Last");
-                        System.out.println("Hospital:"+tableData3.text());
-                        System.out.println("Location: "+parts[0]);
-                        System.out.println("Last"+parts[1]);
                         //  System.out.println(tableData1.text());
-                        String s=tableData2.text();
+                        String s = tableData2.text();
                         String[] splitStr = s.split("\\s+");
-                        System.out.println("Total: "+splitStr[0]);
-                        System.out.println("Vacant: "+splitStr[1]);
-                        System.out.println();
-                        if(!splitStr[1].equals("0")) {
+
+                        int k = Integer.parseInt(splitStr[1].trim());
+                        if (k > 0)
+                        {
                             d = "\n" + "Hospital:" + tableData3.text() + "\n" + "Location: " + parts[0] + "\n" + "Last" + parts[1] + "\n" + "Total: " + splitStr[0] + "\n" + "Vacant: " + splitStr[1] + "\n";
-                        }
+
                         message.setText(d);
                         message.setChatId(String.valueOf(update.getMessage().getChatId()));
                         try {
@@ -191,14 +185,15 @@ public class CovIndiaResource extends TelegramLongPollingBot {
                         }
                     }
 
+                    }
+
                 }
 
 
-            }catch (Exception e) {
+            }
+            catch (Exception e) {
 
             }
-            System.out.println(d);
-            message.setText(d);
         }
 
         if(commands.equals("/oxygendelhi"))
