@@ -115,58 +115,59 @@ public class CovIndiaResource extends TelegramLongPollingBot {
         if(commands.equals("/delhibeds"))
         {
 
-//            System.out.println("/delhibeds  --->"+update.getMessage().getFrom().getFirstName());
-//            HttpClient client = HttpClient.newHttpClient();
-//            HttpRequest request = HttpRequest.newBuilder()
-//                    .uri(URI.create("https://covidresourceindia.herokuapp.com/posts"))
-//                    .build();
-//
-//            HttpResponse<String> response = null;
-//            try {
-//                response = client.send(request, HttpResponse.BodyHandlers.ofString());
-//            } catch (IOException ioException) {
-//                ioException.printStackTrace();
-//            } catch (InterruptedException interruptedException) {
-//                interruptedException.printStackTrace();
-//            }
-//            //   System.out.println(response.body());
-//
-//            JSONArray mJsonArray = new JSONArray(response.body().toString());
-//            JSONObject mJsonObject = mJsonArray.getJSONObject(0);
-//            JSONArray mJsonArrayProperty1 = mJsonObject.getJSONArray("beds");
-//            String s="";
-//            s=s+"-----Delhi Bed Status-----"+"\n"+"\n";
-//            for(int i=0;i<mJsonArrayProperty1.length();i++)
-//            {
-//                JSONObject mJsonObjectProperty = mJsonArrayProperty1.getJSONObject(i);
-//                String location = mJsonObjectProperty.getString("Location");
-//                String Description = mJsonObjectProperty.getString("Description");
-//                String Locationcontact = mJsonObjectProperty.getString("Location-contact");
-//                String Verifiedat = mJsonObjectProperty.getString("Verified at");
-//                String Tocontact = mJsonObjectProperty.getString("Tocontact");
-//                s=s+"Location: "+location+"\n"+"Description: "+Description+"\n"+"Location-Contact: "+Locationcontact+"\n"+"Verified at: "+Verifiedat+"\n"+"To-contact: "+Tocontact+"\n";
-//                s=s+"\n";
-//            }
-//            message.setText(s);
-            String d = "";
-            try {
-                //String uri = "https://studyhub.vinnovateit.com/courses/603f82d34b48f40004358e53";
-                String uri = "https://studyhub.vinnovateit.com/courses/603f82d34b48f40004358e53";
-                Document doc= Jsoup.connect(uri).get();
-                Elements data = doc.select("div.note");
-                Elements p = data.select("p");
-                for (Element x : p) {
-                    d += d + x.text();
-                    if (!x.text().equals("")) {
-                      //  t.setText(t.getText() + x.text().trim());
-                    }
-                  //  t.setText(t.getText() + "\n" + x.select("a").attr("abs:href").trim() + "\n");
-                }
+            System.out.println("/delhibeds  --->"+update.getMessage().getFrom().getFirstName());
+            HttpClient client = HttpClient.newHttpClient();
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(URI.create("https://covidresourceindia.herokuapp.com/posts"))
+                    .build();
 
-            }catch (Exception e) {
-                e.printStackTrace();
+            HttpResponse<String> response = null;
+            try {
+                response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            } catch (InterruptedException interruptedException) {
+                interruptedException.printStackTrace();
             }
-            message.setText(d);
+            //   System.out.println(response.body());
+
+            JSONArray mJsonArray = new JSONArray(response.body().toString());
+            JSONObject mJsonObject = mJsonArray.getJSONObject(0);
+            JSONArray mJsonArrayProperty1 = mJsonObject.getJSONArray("beds");
+            String s="";
+            s=s+"-----Delhi Bed Status-----"+"\n"+"\n";
+            for(int i=0;i<mJsonArrayProperty1.length();i++)
+            {
+                JSONObject mJsonObjectProperty = mJsonArrayProperty1.getJSONObject(i);
+                String location = mJsonObjectProperty.getString("Location");
+                String Description = mJsonObjectProperty.getString("Description");
+                String Locationcontact = mJsonObjectProperty.getString("Location-contact");
+                String Verifiedat = mJsonObjectProperty.getString("Verified at");
+                String Tocontact = mJsonObjectProperty.getString("Tocontact");
+                s=s+"Location: "+location+"\n"+"Description: "+Description+"\n"+"Location-Contact: "+Locationcontact+"\n"+"Verified at: "+Verifiedat+"\n"+"To-contact: "+Tocontact+"\n";
+                s=s+"\n";
+            }
+            message.setText(s);
+//            String d = "";
+//            try {
+//                //String uri = "https://studyhub.vinnovateit.com/courses/603f82d34b48f40004358e53";
+//                String uri = "https://studyhub.vinnovateit.com/courses/603f82d34b48f40004358e53";
+//                Document doc= Jsoup.connect(uri).get();
+//                Elements data = doc.select("div.note");
+//                Elements p = data.select("p");
+//                for (Element x : p) {
+//                    d += d + x.text();
+//                    if (!x.text().equals("")) {
+//                      //  t.setText(t.getText() + x.text().trim());
+//                    }
+//                  //  t.setText(t.getText() + "\n" + x.select("a").attr("abs:href").trim() + "\n");
+//                }
+//
+//            }catch (Exception e) {
+//                e.printStackTrace();
+//            }
+//            System.out.println(d.trim());
+//            message.setText(d);
           //  message.setText("Ruk Jao Sir!"+update.getMessage().getFrom().getFirstName());
         }
 
