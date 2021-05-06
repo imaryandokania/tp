@@ -148,27 +148,49 @@ public class CovIndiaResource extends TelegramLongPollingBot {
                 s=s+"\n";
             }
             message.setText(s);
-//            String d = "";
-//            try {
-//                //String uri = "https://studyhub.vinnovateit.com/courses/603f82d34b48f40004358e53";
-//                String uri = "https://studyhub.vinnovateit.com/courses/603f82d34b48f40004358e53";
-//                Document doc= Jsoup.connect(uri).get();
-//                Elements data = doc.select("div.note");
-//                Elements p = data.select("p");
-//                for (Element x : p) {
-//                    d += d + x.text();
-//                    if (!x.text().equals("")) {
-//                      //  t.setText(t.getText() + x.text().trim());
-//                    }
-//                  //  t.setText(t.getText() + "\n" + x.select("a").attr("abs:href").trim() + "\n");
-//                }
-//
-//            }catch (Exception e) {
-//                e.printStackTrace();
-//            }
-//            System.out.println(d.trim());
-//            message.setText(d);
+
           //  message.setText("Ruk Jao Sir!"+update.getMessage().getFrom().getFirstName());
+        }
+        if(commands.equals("/govtdelhibeds"))
+        {
+            String d = "";
+            try {
+                String uri = "https://delhifightscorona.in/data/covid-icu-beds/";
+                Document doc= Jsoup.connect(uri).get();
+                Elements tables = doc.select("#beds");
+                for(Element table : tables)
+                {
+                    Elements tableRows = table.select("#beds > tbody > tr");
+                    for(Element tableRow : tableRows)
+                    {
+
+                        Elements tableData = tableRow.select("td");
+                        Elements tableData2 = tableRow.select("td.text-right");
+                        Elements tableData1 = tableData.select("address");
+                        Elements tableData3 = tableRow.select("h5");
+                        String s1=tableData1.text();
+                        String[] parts = s1.split("Last");
+                        System.out.println("Hospital:"+tableData3.text());
+                        System.out.println("Location: "+parts[0]);
+                        System.out.println("Last"+parts[1]);
+                        //  System.out.println(tableData1.text());
+                        String s=tableData2.text();
+                        String[] splitStr = s.split("\\s+");
+                        System.out.println("Total: "+splitStr[0]);
+                        System.out.println("Vacant: "+splitStr[1]);
+                        System.out.println();
+                        d=d+"\n"+"Hospital:"+tableData3.text()+"\n"+"Location: "+parts[0]+"\n"+"Last"+parts[1]+"\n"+"Total: "+splitStr[0]+"\n"+"Vacant: "+splitStr[1]+"\n";
+
+                    }
+
+                }
+                message.setText(d);
+          //      System.out.println(d);
+
+
+            }catch (Exception e) {
+                System.out.println(e);
+            }
         }
 
         if(commands.equals("/oxygendelhi"))
