@@ -385,7 +385,12 @@ public class CovIndiaResource extends TelegramLongPollingBot {
                 System.out.println(e);
             }
         }
-
+        message.setChatId(String.valueOf(update.getMessage().getChatId()));
+        try {
+            execute(message);
+        } catch (TelegramApiException e) {
+            e.printStackTrace();
+        }
 
 
     }
