@@ -171,6 +171,19 @@ public class CovIndiaResource extends TelegramLongPollingBot {
             try {
                 String uri = "https://delhifightscorona.in/data/covid-icu-beds/";
                 Document doc = Jsoup.connect(uri).get();
+                Elements ty = doc.select("body > div > div > div.cell.auto > div.grid-x.grid-margin-x");
+                String u=ty.text();
+                String[] splitStr1 = u.split("Occ");
+                String[] splitStr2 = splitStr1[1].split("Va");
+                String l="";
+                l=splitStr1[0]+"\n"+"Occ"+splitStr2[0]+"\n"+"Va"+splitStr2[1]+"\n";
+                message.setText(l);
+                message.setChatId(String.valueOf(update.getMessage().getChatId()));
+                try {
+                    execute(message);
+                } catch (TelegramApiException e) {
+                    e.printStackTrace();
+                }
                 Elements tables = doc.select("#beds");
                 for (Element table : tables) {
                     Elements tableRows = table.select("#beds > tbody > tr");
