@@ -286,6 +286,7 @@ public class CovIndiaResource extends TelegramLongPollingBot {
                         if(k==132)
                         {
                             break;
+
                         }
                         for(Element p:tableData)
                         {
@@ -337,6 +338,10 @@ public class CovIndiaResource extends TelegramLongPollingBot {
                             e.printStackTrace();
                         }
 
+                    }
+                    if(k==132)
+                    {
+                        break;
                     }
 
                 }
