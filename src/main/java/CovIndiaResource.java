@@ -282,7 +282,7 @@ public class CovIndiaResource extends TelegramLongPollingBot {
                         Elements tableData = tableRow.select("td");
                         int i=0;
                       //  System.out.println("K value:"+k);
-                        if(k==132)
+                        if(k==136)
                         {
                             break;
 
@@ -339,7 +339,7 @@ public class CovIndiaResource extends TelegramLongPollingBot {
                         }
                     }
 
-                    if(k==132)
+                    if(k==136)
                     {
                         break;
                     }
