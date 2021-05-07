@@ -73,6 +73,12 @@ public class CovIndiaResource extends TelegramLongPollingBot {
                 s=s+"\n";
             }
             message.setText(s);
+            message.setChatId(String.valueOf(update.getMessage().getChatId()));
+            try {
+                execute(message);
+            } catch (TelegramApiException e) {
+                e.printStackTrace();
+            }
         }
         if(commands.equals("/medicinedelhi"))
         {
@@ -106,6 +112,12 @@ public class CovIndiaResource extends TelegramLongPollingBot {
                 s=s+"\n";
             }
             message.setText(s);
+            message.setChatId(String.valueOf(update.getMessage().getChatId()));
+            try {
+                execute(message);
+            } catch (TelegramApiException e) {
+                e.printStackTrace();
+            }
         }
 
 
@@ -145,6 +157,12 @@ public class CovIndiaResource extends TelegramLongPollingBot {
                 s=s+"\n";
             }
             message.setText(s);
+            message.setChatId(String.valueOf(update.getMessage().getChatId()));
+            try {
+                execute(message);
+            } catch (TelegramApiException e) {
+                e.printStackTrace();
+            }
 
           //  message.setText("Ruk Jao Sir!"+update.getMessage().getFrom().getFirstName());
         }
@@ -225,14 +243,16 @@ public class CovIndiaResource extends TelegramLongPollingBot {
                 s=s+"\n";
             }
             message.setText(s);
+
+            message.setChatId(String.valueOf(update.getMessage().getChatId()));
+            try {
+                execute(message);
+            } catch (TelegramApiException e) {
+                e.printStackTrace();
+            }
       }
 
-        message.setChatId(String.valueOf(update.getMessage().getChatId()));
-        try {
-            execute(message);
-        } catch (TelegramApiException e) {
-            e.printStackTrace();
-        }
+
 
     }
 }
