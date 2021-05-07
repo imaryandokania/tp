@@ -276,6 +276,7 @@ public class CovIndiaResource extends TelegramLongPollingBot {
                 {
                     Elements tableRows = table.select( "tbody > tr");
                     int k=1;
+                    d="";
                     for(Element tableRow : tableRows)
                     {
                         Elements tableData = tableRow.select("td");
