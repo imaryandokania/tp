@@ -191,6 +191,7 @@ public class CovIndiaResource extends TelegramLongPollingBot {
 
                         Elements tableData = tableRow.select("td");
                         Elements tableData4 = tableRow.select("div.numbers");
+                        Elements tableData5 = tableRow.select("div.numbers > a");
                         Elements tableData2 = tableRow.select("td.text-right");
                         Elements tableData1 = tableData.select("address");
                         Elements tableData3 = tableRow.select("h5");
@@ -202,8 +203,7 @@ public class CovIndiaResource extends TelegramLongPollingBot {
                         int k = Integer.parseInt(splitStr[1].trim());
                         if (k > 0)
                         {
-                            d = "\n" + "Hospital:" + tableData3.text() + "\n" + "Location: " + parts[0] + "\n"+"Contact: "+tableData4.text().replace("Location","")+"\n"+ "Last" + parts[1] + "\n" + "Total: " + splitStr[0] + "\n" + "Vacant: " + splitStr[1] + "\n";
-
+                            d = "\n" + "Hospital:" + tableData3.text() + "\n" + "Location: " + parts[0] + "\n"+"Contact: "+tableData4.text().replace("Location","")+"\n"+"Map :"+tableData5.attr("abs:href").trim()+"\n" +"Last" + parts[1] + "\n" + "Total: " + splitStr[0] + "\n" + "Vacant: " + splitStr[1] + "\n";
                         message.setText(d);
                         message.setChatId(String.valueOf(update.getMessage().getChatId()));
                         try {
