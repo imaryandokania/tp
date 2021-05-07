@@ -272,16 +272,15 @@ public class CovIndiaResource extends TelegramLongPollingBot {
                 String uri = "https://bbmpgov.com/chbms/";
                 Document doc= Jsoup.connect(uri).get();
                 Elements tables = doc.select("#GovernmentMedical");
+                int k=1;
                 for(Element table : tables)
                 {
                     Elements tableRows = table.select( "tbody > tr");
-                    int k=0;
                     d="";
                     for(Element tableRow : tableRows)
                     {
                         Elements tableData = tableRow.select("td");
                         int i=0;
-
                       //  System.out.println("K value:"+k);
                         if(k==132)
                         {
@@ -293,7 +292,7 @@ public class CovIndiaResource extends TelegramLongPollingBot {
                             if(i==0)
                             {
                                // System.out.println("#:"+p.text());
-                                d=d+"#:"+p.text()+"\n";
+                                d=d+"#:"+Integer.toString(k)+"\n";
                             }
                             if(i==1)
                             {
