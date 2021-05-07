@@ -275,13 +275,13 @@ public class CovIndiaResource extends TelegramLongPollingBot {
                 for(Element table : tables)
                 {
                     Elements tableRows = table.select( "tbody > tr");
-                    int k=1;
+                    int k=0;
                     d="";
                     for(Element tableRow : tableRows)
                     {
                         Elements tableData = tableRow.select("td");
                         int i=0;
-                        k=k+1;
+
                       //  System.out.println("K value:"+k);
                         if(k==132)
                         {
@@ -329,6 +329,7 @@ public class CovIndiaResource extends TelegramLongPollingBot {
 
 
                         }
+                        k=k+1;
                         message.setText(d);
                         d="";
                         message.setChatId(String.valueOf(update.getMessage().getChatId()));
@@ -337,12 +338,14 @@ public class CovIndiaResource extends TelegramLongPollingBot {
                         } catch (TelegramApiException e) {
                             e.printStackTrace();
                         }
-
                     }
+
                     if(k==132)
                     {
                         break;
                     }
+
+
 
                 }
 
