@@ -265,6 +265,83 @@ public class CovIndiaResource extends TelegramLongPollingBot {
                 e.printStackTrace();
             }
       }
+        if(commands.equals("/bengaluruhospitalstatus"))
+        {
+            String d="";
+            try {
+                String uri = "https://bbmpgov.com/chbms/";
+                Document doc= Jsoup.connect(uri).get();
+                Elements tables = doc.select("#GovernmentMedical");
+                for(Element table : tables)
+                {
+                    Elements tableRows = table.select( "tbody > tr");
+                    int k=1;
+                    for(Element tableRow : tableRows)
+                    {
+                        Elements tableData = tableRow.select("td");
+                        int i=0;
+                        k=k+1;
+                      //  System.out.println("K value:"+k);
+                        if(k==132)
+                        {
+                            break;
+                        }
+                        for(Element p:tableData)
+                        {
+                            if(i==0)
+                            {
+                               // System.out.println("#:"+p.text());
+                                d=d+"#:"+p.text()+"\n";
+                            }
+                            if(i==1)
+                            {
+                               // System.out.println("Hospital:"+p.text());
+                                d=d+"Hospital:"+p.text()+"\n";
+                            }
+                            if(i==12)
+                            {
+                               // System.out.println("Gen:"+p.text());
+                                d=d+"Gen:"+p.text()+"\n";
+                            }
+                            if(i==13)
+                            {
+                                //System.out.println("HDU:"+p.text());
+                                d=d+"HDU:"+p.text()+"\n";
+                            }
+                            if(i==14)
+                            {
+                               // System.out.println("ICU:"+p.text());
+                                d=d+"ICU:"+p.text()+"\n";
+                            }
+                            if(i==15)
+                            {
+                               // System.out.println("ICU Vent:"+p.text());
+                                d=d+"ICU Vent:"+p.text()+"\n";
+                            }
+                            if(i==16)
+                            {
+                              //  System.out.println("Total:"+p.text());
+                                d=d+"Total:"+p.text()+"\n";
+                            }
+                            i=i+1;
+                            message.setText(d);
+                            message.setChatId(String.valueOf(update.getMessage().getChatId()));
+                            try {
+                                execute(message);
+                            } catch (TelegramApiException e) {
+                                e.printStackTrace();
+                            }
+
+                        }
+
+                    }
+
+                }
+
+            }catch (Exception e) {
+                System.out.println(e);
+            }
+        }
 
 
 
