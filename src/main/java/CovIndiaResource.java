@@ -57,6 +57,13 @@ public class CovIndiaResource extends TelegramLongPollingBot{
                     if(commands.equals("/start"))
                     {
                         message.setText("Welcome! "+update.getMessage().getFrom().getFirstName()+" We are here to help people by providing details about Beds , Oxygen , Remdesivir etc");
+                        message.setChatId(String.valueOf(update.getMessage().getChatId()));
+                        try {
+                            execute(message);
+                        } catch (TelegramApiException e) {
+                            e.printStackTrace();
+                        }
+
                     }
                     if(commands.equals("/plasmadelhi"))
                     {
@@ -396,12 +403,6 @@ public class CovIndiaResource extends TelegramLongPollingBot{
                         }catch (Exception e) {
                             System.out.println(e);
                         }
-                    }
-                    message.setChatId(String.valueOf(update.getMessage().getChatId()));
-                    try {
-                        execute(message);
-                    } catch (TelegramApiException e) {
-                        e.printStackTrace();
                     }
 
 
