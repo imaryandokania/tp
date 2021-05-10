@@ -36,7 +36,7 @@ public class CovIndiaResource extends TelegramLongPollingBot{
 //        System.out.println(update.getMessage().getFrom().getFirstName());
 
 
-        String commands =update.getMessage().getText();
+        //String commands =update.getMessage().getText();
 
         SendMessage message=new SendMessage();
 
