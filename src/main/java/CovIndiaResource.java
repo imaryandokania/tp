@@ -22,12 +22,12 @@ import java.net.http.HttpRequest;
 public class CovIndiaResource extends TelegramLongPollingBot{
     @Override
     public String getBotUsername() {
-        return "covindiaresource_bot";
+        return "covinresource_bot";
     }
 
     @Override
     public String getBotToken() {
-        return "1779610346:AAGIhfsCaB8HaiU0_VQErIOhsZu-hEItSyQ";
+        return "1861386703:AAFfFqBoWuujWbv25Dzvtd0nQhRtrKPx7Mg";
     }
 
     @Override
